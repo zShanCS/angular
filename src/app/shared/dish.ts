@@ -7,4 +7,5 @@ export class Dish {
     label: string;
     price: string;
     description: string;
+    likes:number=0;
 }
