@@ -1,75 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Dish } from '../shared/dish';
+import { DISHES } from '../shared/dishes';
 
-   const DISHES: Dish[] = [
-    {
-      id: '0',
-      name: 'Uthappizza',
-      image: '/assets/images/uthappizza.png',
-      category: 'mains',
-      featured: true,
-      label: 'Hot',
-      price: '4.99',
-      // tslint:disable-next-line:max-line-length
-      description: 'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.',
-      likes:0
-    },
-    {
-      id: '1',
-      name: 'Zucchipakoda',
-      image: '/assets/images/zucchipakoda.png',
-      category: 'appetizer',
-      featured: false,
-      label: '',
-      price: '1.99',
-      description: 'Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce',
-      likes:0
-    },
-    {
-      id: '2',
-      name: 'Vadonut',
-      image: '/assets/images/vadonut.png',
-      category: 'appetizer',
-      featured: false,
-      label: 'New',
-      price: '1.99',
-      description: 'A quintessential ConFusion experience, is it a vada or is it a donut?',
-      likes:0
-      },
-    {
-      id: '3',
-      name: 'ElaiCheese Cake',
-      image: '/assets/images/elaicheesecake.png',
-      category: 'dessert',
-      featured: false,
-      label: '',
-      price: '2.99',
-      description: 'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms',
-      likes:0
-    }
-   ];
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  dishes = DISHES;
-  selectedDish = DISHES[0];
-  constructor() { }
+  dishes :Dish[]= DISHES;
+  selectedDish :Dish;
+  constructor() {}
 
   ngOnInit(): void {
   }
-  selectDish(id : any){
-    console.log(id);
-    for (let index = 0; index < DISHES.length; index++) {
-      const element = DISHES[index];
-      if(element.id == id ) 
-      {
-        this.selectedDish = DISHES[index];
-        break;
-      }
-    }
+  selectDish(dish:Dish){
+   this.selectedDish = dish;
   }
   
 }
