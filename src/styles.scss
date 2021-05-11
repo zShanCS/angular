@@ -1,33 +1,27 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-
 @include mat-core();
-
 $conFusion-primary: mat-palette($mat-indigo);
 $conFusion-accent: mat-palette($mat-pink, A200, A100, A400);
-
 $conFusion-warn: mat-palette($mat-red);
-
-$conFusion-theme: mat-light-theme((
-  color: (
-    primary: $conFusion-primary,
-    accent: $conFusion-accent,
-    warn: $conFusion-warn,
-  )
-));
+$conFusion-theme: mat-light-theme(( color: ( primary: $conFusion-primary, accent: $conFusion-accent, warn: $conFusion-warn, )));
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { 
-  margin: 0; 
-  padding: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
- }
- .container {
-  margin: 20px;
-  display:flex;
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+    margin: 20px;
+    display: flex;
 }
