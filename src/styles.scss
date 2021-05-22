@@ -2,7 +2,7 @@
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-//@import 'variables';
+@import 'variables';
 @import '../node_modules/font-awesome/scss/font-awesome';
 @include mat-core();
 $conFusion-primary: mat-palette($mat-indigo);
