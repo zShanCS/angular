@@ -14,6 +14,7 @@ $conFusion-theme: mat-light-theme(( color: ( primary: $conFusion-primary, accent
 
 $lt-gray: #ddd;
 $background-dark: #512DA8;
+$background-moredark: #4527A0;
 $background-light: #9575CD;
 $background-pale: #D1C4E9;
 $primary-color-dark: #512DA8;
@@ -45,6 +46,21 @@ body {
     display: flex;
 }
 
+.jumbotron {
+    background-color: $background-light;
+    margin: 0;
+    padding: 5em 20px;
+    color: white;
+    h1 {
+        font-size: 2.5em;
+        font-weight: 500;
+        margin-bottom: 1em;
+    }
+    p {
+        font-size: 1.5em;
+    }
+}
+
 .background-primary {
     background-color: $background-dark!important;
 }
@@ -59,4 +75,8 @@ body {
 
 .flex-spacer {
     flex: 1 1 auto;
+}
+
+.active {
+    background-color: $background-moredark;
 }
