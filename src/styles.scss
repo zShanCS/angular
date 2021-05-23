@@ -41,6 +41,11 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+h3 {
+    font-size: 2em;
+    margin: 1em 0.5em;
+}
+
 .container {
     margin: 20px;
     display: flex;
@@ -94,4 +99,16 @@ body {
 button:disabled {
     background-color: gray!important;
     cursor: not-allowed!important;
+}
+
+.full-width {
+    width: 95%
+}
+
+.half-width {
+    width: 45%
+}
+
+.form-size {
+    width: 75%
 }
