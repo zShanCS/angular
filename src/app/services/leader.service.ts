@@ -5,13 +5,16 @@ import { LEADERS } from "../shared/leaders";
   providedIn: 'root'
 }) 
 export class LeaderService {
-  leaders:Leader[];
+  leaders:Leader[]=LEADERS;
   constructor() { }
 
   getLeaders():Leader[]{
-    return this.leaders=LEADERS;
+    return this.leaders;
   }
   getLeader(id:string):Leader{
     return this.leaders.filter((leader)=>(leader.id === id))[0];
   } 
+  getFeaturedLeader():Leader{
+    return this.leaders.filter(leader=>leader.featured)[0];
+  }
 }
