@@ -23,7 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms'; 
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
-
+import { HttpClientModule } from "@angular/common/http";
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
@@ -38,6 +38,8 @@ import { PromotionService } from "./services/promotion.service";
 import { LeaderService } from "./services/leader.service";
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
+
+import { baseURL } from "./shared/baseurl";
  @NgModule({
   declarations: [
     AppComponent,
@@ -61,9 +63,9 @@ import { LoginComponent } from './login/login.component';
     MatCardModule,
     MatButtonModule,
     AppRoutingModule,
+    HttpClientModule,
     MatDialogModule,
     MatSliderModule,
-    
     MatFormFieldModule, 
     MatInputModule,
     MatCheckboxModule,  
@@ -73,7 +75,15 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [DishService,LeaderService,PromotionService],
+  providers: [
+    DishService,
+    LeaderService,
+    PromotionService,
+    {
+      provide:'BaseURL',
+      useValue:baseURL
+    }
+  ],
   bootstrap: [AppComponent],
   entryComponents:[LoginComponent]
 })
