@@ -20,6 +20,8 @@ export class DishdetailComponent implements OnInit {
     prev:string;
     next:string;
 
+    errMess:string;
+
     commentForm:FormGroup;
     comment:Comment;
     formErrors:{[key:string]:any}={
@@ -51,12 +53,15 @@ export class DishdetailComponent implements OnInit {
            .subscribe(dish=>{
              console.log('Dish Recieved',dish,'calling setPrevNext now');
              this.dish = dish; this.setPrevNext(dish.id)
-             });
+             },
+             errMess=>this.errMess=<any>errMess
+             );
 
      this.dishservice.getDishIds().subscribe(dishIds=>{
         this.dishIds = dishIds;
         console.log('new DishIds recived',dishIds);
-      });
+      }
+      );
       
   }
 

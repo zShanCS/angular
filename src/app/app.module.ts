@@ -36,6 +36,8 @@ import { ContactComponent } from './contact/contact.component';
 import { DishService } from "./services/dish.service";
 import { PromotionService } from "./services/promotion.service";
 import { LeaderService } from "./services/leader.service";
+import { ProcessHttpMsgService } from "./services/process-httpmsg.service";
+
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 
@@ -79,6 +81,7 @@ import { baseURL } from "./shared/baseurl";
     DishService,
     LeaderService,
     PromotionService,
+    ProcessHttpMsgService,
     {
       provide:'BaseURL',
       useValue:baseURL
