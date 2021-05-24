@@ -16,6 +16,7 @@ export class DishdetailComponent implements OnInit {
   @ViewChild('fform') commentFormDirective:any;
 
     dish: Dish;
+    dishCopy: Dish;
     dishIds: string[];
     prev:string;
     next:string;
@@ -38,7 +39,7 @@ export class DishdetailComponent implements OnInit {
       }
     };
   constructor(
-    private dishservice: DishService,
+    private dishService: DishService,
     private route: ActivatedRoute,
     private location: Location,
     private fb:FormBuilder,
@@ -49,15 +50,17 @@ export class DishdetailComponent implements OnInit {
     
     this.route.params.pipe(
         switchMap((params:Params) =>
-           this.dishservice.getDish(params['id'])))
+           this.dishService.getDish(params['id'])))
            .subscribe(dish=>{
              console.log('Dish Recieved',dish,'calling setPrevNext now');
-             this.dish = dish; this.setPrevNext(dish.id)
+             this.dish = dish; 
+             this.dishCopy = dish;
+             this.setPrevNext(dish.id)
              },
              errMess=>this.errMess=<any>errMess
              );
 
-     this.dishservice.getDishIds().subscribe(dishIds=>{
+     this.dishService.getDishIds().subscribe(dishIds=>{
         this.dishIds = dishIds;
         console.log('new DishIds recived',dishIds);
       }
@@ -109,13 +112,18 @@ export class DishdetailComponent implements OnInit {
   onSubmit() {
     this.comment = this.commentForm.value;
     this.comment.date = Date();
-    this.dish.comments.push(this.comment);
+    this.dishCopy.comments.push(this.comment);
+    this.dishService.putDish(this.dishCopy)
+    .subscribe(
+      dish=>{this.dish=dish;this.dishCopy=dish},
+      errMess=>this.errMess=<any>errMess
+    )
+    this.commentFormDirective.reset();
     this.commentForm.reset({
      author:'',
      comment:'',
      rating:'5'
     });
-
   }
 
 get author(){

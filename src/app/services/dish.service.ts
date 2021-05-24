@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable/*, BehaviorSubject*/ } from 'rxjs';
 import { map,catchError } from 'rxjs/operators';
 import { Dish } from "../shared/dish";
@@ -24,7 +24,15 @@ export class DishService {
     return this.http.get<Dish>(baseURL+'dishes/'+id)
     .pipe(catchError(this.processHttpMsgService.handleError));
   } 
-
+  putDish(dish:Dish):Observable<Dish>{
+    const httpOptions = {
+      headers:new HttpHeaders({
+        'Content-Type':'application/json'
+      })
+    };
+    return this.http.put<Dish>(baseURL+'dishes/'+dish.id , dish , httpOptions)
+    .pipe(catchError(this.processHttpMsgService.handleError));
+  }
 
   getFeaturedDish(): Observable<Dish> {
     return this.http.get<Dish[]>(baseURL + 'dishes?featured=true').pipe(map(dishes => dishes[0]))
