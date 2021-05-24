@@ -8,17 +8,23 @@ import { DishService } from '../services/dish.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+
   dishes :Dish[];
   selectedDish :Dish;
-  constructor(private dishService : DishService) {}
+  constructor(private dishService : DishService) {
+    console.log('menu created');
+    
+  }
 
   ngOnInit(): void {
     console.log('menu initialized');
     
-    this.dishService.getDishes().subscribe(dishes=>this.dishes=dishes);
+    this.dishService.getDishes().subscribe(dishes=>{
+      this.dishes=dishes;
+      console.log(dishes);
+    });
   }
   selectDish(dish:Dish){
    this.selectedDish = dish;
   }
-  
 }
