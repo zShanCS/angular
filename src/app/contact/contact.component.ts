@@ -1,5 +1,6 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { expand, flyInOut } from '../animations/app.animate';
 import { Feedback, ContactType } from '../shared/feedback';
 
 // interface ErrorObject{
@@ -9,39 +10,47 @@ import { Feedback, ContactType } from '../shared/feedback';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display:block;'
+  },
+  animations: [
+    flyInOut(),
+    expand()
+  ]
 })
 
 export class ContactComponent implements OnInit {
-  @ViewChild('fform') feedbackFormDirective:any;
+  @ViewChild('fform') feedbackFormDirective: any;
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
 
-  formErrors:{[key:string]:any}={
-    firstname:'',
-    lastname:'',
-    email:'',
-    telnum:''
+  formErrors: { [key: string]: any } = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    telnum: ''
   };
-  validationMessages:{[key:string]:any}={
-    firstname:{
-      required:'First Name is required',
-      minlength:'First Name cannot be less than 2 characters',
-      maxlength:'First Name cannot be more than 25 characters'
-      },
-    lastname:{
-      required:'Last Name is required',
-      minlength:'Last Name cannot be less than 2 characters',
-      maxlength:'Last Name cannot be more than 25 characters'
-      },
-    email:{
-      required:'Email is required',
-      email:'Email is not valid',
+  validationMessages: { [key: string]: any } = {
+    firstname: {
+      required: 'First Name is required',
+      minlength: 'First Name cannot be less than 2 characters',
+      maxlength: 'First Name cannot be more than 25 characters'
     },
-    telnum:{
-      required:'Tel. Num is required',
-      pattern : 'Tel. Num can only contain numbers'
+    lastname: {
+      required: 'Last Name is required',
+      minlength: 'Last Name cannot be less than 2 characters',
+      maxlength: 'Last Name cannot be more than 25 characters'
+    },
+    email: {
+      required: 'Email is required',
+      email: 'Email is not valid',
+    },
+    telnum: {
+      required: 'Tel. Num is required',
+      pattern: 'Tel. Num can only contain numbers'
     }
   };
 
@@ -54,16 +63,16 @@ export class ContactComponent implements OnInit {
 
   createForm() {
     this.feedbackForm = this.fb.group({
-      firstname: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(25)] ],
-      lastname: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(25)] ],
-      telnum: ['', [Validators.required,Validators.pattern] ],
-      email: ['', [Validators.required,Validators.email] ],
+      firstname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      lastname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      telnum: ['', [Validators.required, Validators.pattern]],
+      email: ['', [Validators.required, Validators.email]],
       agree: false,
       contacttype: 'None',
       message: ''
     });
 
-    this.feedbackForm.valueChanges.subscribe((data:any)=>{this.onValueChanged(data)});
+    this.feedbackForm.valueChanges.subscribe((data: any) => { this.onValueChanged(data) });
 
     //this will (re)set any messages
     this.onValueChanged();
@@ -105,18 +114,18 @@ export class ContactComponent implements OnInit {
     }
   }
 
-get firstname() : any {
-  return this.feedbackForm.get('firstname');
-}
-get lastname() : any {
-  return this.feedbackForm.get('lastname');
-}
-get telnum() : any {
-  return this.feedbackForm.get('telnum');
-}
-get email() : any {
-  return this.feedbackForm.get('email');
-}
+  get firstname(): any {
+    return this.feedbackForm.get('firstname');
+  }
+  get lastname(): any {
+    return this.feedbackForm.get('lastname');
+  }
+  get telnum(): any {
+    return this.feedbackForm.get('telnum');
+  }
+  get email(): any {
+    return this.feedbackForm.get('email');
+  }
 
 
 }
