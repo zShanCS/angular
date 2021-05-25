@@ -39,12 +39,12 @@ import { LeaderService } from "./services/leader.service";
 import { ProcessHttpMsgService } from "./services/process-httpmsg.service";
 
 import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent} from './login/login.component';
 
 import { baseURL } from "./shared/baseurl";
  @NgModule({
-  declarations: [
-    AppComponent,
+  declarations:[  
+      AppComponent,
     MenuComponent,
     DishdetailComponent,
     HeaderComponent,
@@ -52,9 +52,8 @@ import { baseURL } from "./shared/baseurl";
     HomeComponent,
     ContactComponent,
     AboutComponent,
-    LoginComponent,
-    
-  ],
+    LoginComponent
+    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
