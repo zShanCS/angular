@@ -42,6 +42,7 @@ import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 
 import { baseURL } from "./shared/baseurl";
+import { HighlightDirective } from './directive/highlight.directive';
  @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,7 @@ import { baseURL } from "./shared/baseurl";
     ContactComponent,
     AboutComponent,
     LoginComponent,
+    HighlightDirective,
     
   ],
   imports: [

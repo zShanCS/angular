@@ -116,3 +116,10 @@ button:disabled {
 .border {
     border: 1px solid $primary-color-dark;
 }
+
+.highlight {
+    background-color: $background-pale;
+    border: 1px solid $primary-color-dark;
+    z-index: 1;
+    transform: scale(1.01);
+}
