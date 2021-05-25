@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Params, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { state, style, animate, trigger, transition } from '@angular/animations';
 import { Dish } from "../shared/dish";
 import { DishService } from '../services/dish.service';
 import { Location } from '@angular/common';
@@ -10,7 +11,21 @@ import { Comment } from '../shared/comment';
 @Component({
     selector: 'app-dishdetail',
     templateUrl: './dishdetail.component.html',
-    styleUrls: ['./dishdetail.component.scss']
+    styleUrls: ['./dishdetail.component.scss'],
+    //animations
+    animations: [
+        trigger('visibility', [
+            state('shown', style({
+                transform: 'scale(1.0)',
+                opacity: 1
+            })),
+            state('hidden', style({
+                transform: 'scale(0.5)',
+                opacity: 0
+            })),
+            transition('*=>*', animate('0.5s ease-in-out'))
+        ])
+    ]
 })
 export class DishdetailComponent implements OnInit {
     @ViewChild('fform') commentFormDirective: any;
@@ -21,15 +36,13 @@ export class DishdetailComponent implements OnInit {
     prev: string;
     next: string;
     errMess: string;
-
+    visibility = 'shown';
     commentForm: FormGroup;
     comment: Comment;
-    formErrors: {
-        [key: string]: any
-    } = {
-            author: '',
-            comment: ''
-        };
+    formErrors: { [key: string]: any } = {
+        author: '',
+        comment: ''
+    };
     validationMessages: {
         [key: string]: any
     } = {
@@ -49,20 +62,24 @@ export class DishdetailComponent implements OnInit {
         @Inject('BaseURL') public BaseURL: string
     ) {
         this.createForm();
-        this.dishService.getFeaturedDish().pipe()
     }
 
 
     ngOnInit() {
-
+        // visibility='shown';
         this.route.params.pipe(
-            switchMap((params: Params) =>
-                this.dishService.getDish(params['id'])))
+            switchMap(
+                (params: Params) => {
+                    this.visibility = 'hidden';
+                    return this.dishService.getDish(params['id']);
+                }
+            ))
             .subscribe(dish => {
                 console.log('Dish Recieved', dish, 'calling setPrevNext now');
                 this.dish = dish;
                 this.dishCopy = dish;
-                this.setPrevNext(dish.id)
+                this.setPrevNext(dish.id);
+                this.visibility = 'shown';
             },
                 errMess => this.errMess = <any>errMess
             );
