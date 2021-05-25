@@ -36,17 +36,15 @@ export class DishdetailComponent implements OnInit {
         author: '',
         comment: ''
     };
-    validationMessages: {
-        [key: string]: any
-    } = {
-            author: {
-                required: 'Author Name is Required.',
-                minlength: 'Author Name cant be less than 2 characters.',
-            },
-            comment: {
-                required: 'Comment is required.',
-            }
-        };
+    validationMessages: { [key: string]: any } = {
+        author: {
+            required: 'Author Name is Required.',
+            minlength: 'Author Name cant be less than 2 characters.',
+        },
+        comment: {
+            required: 'Comment is required.',
+        }
+    };
     constructor(
         private dishService: DishService,
         private route: ActivatedRoute,
