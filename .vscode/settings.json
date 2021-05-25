@@ -5,5 +5,6 @@
     "strings": true
   },
   "tslint.jsEnable": true,
-  "tslint.exclude": "false"
+  "tslint.exclude": "false",
+  "git.ignoreLimitWarning": true
 }

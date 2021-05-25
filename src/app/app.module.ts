@@ -39,13 +39,12 @@ import { LeaderService } from "./services/leader.service";
 import { ProcessHttpMsgService } from "./services/process-httpmsg.service";
 
 import { AboutComponent } from './about/about.component';
-import { LoginComponent} from './login/login.component';
+import { LoginComponent } from './login/login.component';
 
 import { baseURL } from "./shared/baseurl";
-import { HighlightDirective } from './directives/highlight.directive';
  @NgModule({
-  declarations:[  
-      AppComponent,
+  declarations: [
+    AppComponent,
     MenuComponent,
     DishdetailComponent,
     HeaderComponent,
@@ -54,8 +53,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     ContactComponent,
     AboutComponent,
     LoginComponent,
-    HighlightDirective
-    ],
+    
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

@@ -47,7 +47,10 @@ export class DishdetailComponent implements OnInit {
         private location: Location,
         private fb: FormBuilder,
         @Inject('BaseURL') public BaseURL: string
-    ) { this.createForm(); }
+    ) {
+        this.createForm();
+        this.dishService.getFeaturedDish().pipe()
+    }
 
 
     ngOnInit() {
@@ -56,7 +59,6 @@ export class DishdetailComponent implements OnInit {
             switchMap((params: Params) =>
                 this.dishService.getDish(params['id'])))
             .subscribe(dish => {
-
                 console.log('Dish Recieved', dish, 'calling setPrevNext now');
                 this.dish = dish;
                 this.dishCopy = dish;
