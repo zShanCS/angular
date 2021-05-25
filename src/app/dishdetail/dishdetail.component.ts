@@ -88,7 +88,7 @@ export class DishdetailComponent implements OnInit {
             comment: ['', [Validators.required]],
             rating: ['5']
         });
-
+ 
         this.commentForm.valueChanges.subscribe((data: any) => {
             this.comment = data;
             this.onValueChanged(data);
